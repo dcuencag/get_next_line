@@ -6,7 +6,7 @@
 /*   By: dancuenc <dancuenc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:48:44 by dancuenc          #+#    #+#             */
-/*   Updated: 2025/02/16 20:44:15 by dancuenc         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:11:08 by dancuenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 
@@ -31,7 +31,7 @@ char	*get_next_line(int fd);
  * @param s2 The second string
  * @return A pointer to the concatenated string
  */
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 /**
  * Find the first occurrence of a character in a string

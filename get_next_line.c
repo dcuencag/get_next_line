@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   4get_next_line.c                                   :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dancuenc <dancuenc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:42:42 by dancuenc          #+#    #+#             */
-/*   Updated: 2025/02/16 20:30:22 by dancuenc         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:14:02 by dancuenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "get_next_line_utils.c"
 
 char *extract_line(char *current_line)
 {
@@ -28,7 +29,7 @@ char *extract_line(char *current_line)
 		new_line[i] = current_line[i];
 		i++;
 	}
-	new_line[i] = '\0';
+	new_line[i] = current_line[i];
 	return (new_line);
 }
 
@@ -41,25 +42,28 @@ char	*get_next_line(int fd)
 	int bytes_read;
 
 	temp = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	while (!ft_strchr(stash, '\n') || !ft_strchr(stash, '\0') || !stash)
+	while (!stash || !ft_strchr(stash, '\n') || !ft_strchr(stash, '\0'))
 	{
 		bytes_read = read(fd, buff, BUFFER_SIZE);
 		buff[bytes_read] = '\0';
 		if (bytes_read <= 0)
 		{
 			temp = stash;
-			free(stash);
+			stash = NULL;
 			return (temp);
 		}
 		if(!stash)
+		{
 			stash = temp;
+		}
 		temp = stash;
 		stash = ft_strjoin(temp, buff);
+		
 	} 
 	if(ft_strchr(stash, '\n') || ft_strchr(stash, '\0'))
 	{
 		line_read = extract_line(stash);
-		stash = ft_strchr(stash, '\n');
+		stash = ft_strchr(stash, '\n') + 1;
 		return(line_read);
 	}
 	return (NULL);
@@ -67,17 +71,16 @@ char	*get_next_line(int fd)
 
 int main()
 {
-	int fd = open("try4.txt", O_RDONLY);
+	int fd = open("hp.txt", O_RDONLY);
 	if (fd < 0)
 	{
 		printf("Failed to open file.\n");
 		return 1;
 	}
 	char *line;
-	int i = 1;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("gnl call[%d] = %s\n", i++, line);
+		printf(" %s", line);
 	}	
 	close(fd);
 	return 0;

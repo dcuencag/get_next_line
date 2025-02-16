@@ -6,7 +6,7 @@
 /*   By: dancuenc <dancuenc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:48:41 by dancuenc          #+#    #+#             */
-/*   Updated: 2025/02/16 20:06:25 by dancuenc         ###   ########.fr       */
+/*   Updated: 2025/02/16 22:54:36 by dancuenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,31 @@ char *ft_strdup(const char *s)
 	return (dup);
 }
 
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*joined;
-	size_t  i, j;
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
+	char	*newstr;
 
-	if (!s1 || !s2)
-		return (NULL);
-	joined = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!joined)
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	newstr = malloc(s1_len + s2_len + 1);
+	if (!newstr)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (s1[i] != '\0')
 	{
-		joined[i] = s1[i];
+		newstr[i] = s1[i];
 		i++;
 	}
-	j = 0;
-	while (s2[j])
-		joined[i++] = s2[j++];
-	joined[i] = '\0';
-	return (joined);
+	while (s2[i - s1_len] != '\0')
+	{
+		newstr[i] = s2[i - s1_len];
+		i++;
+	}
+	newstr[i] = '\0';
+	return (newstr);
 }
 
 char *ft_substr(char *s, unsigned int start, size_t len)
