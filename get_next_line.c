@@ -6,7 +6,7 @@
 /*   By: dancuenc <dancuenc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:42:42 by dancuenc          #+#    #+#             */
-/*   Updated: 2025/02/17 17:36:48 by dancuenc         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:53:12 by dancuenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,12 @@ char *extract_line(char *current_line)
 
 char *read_and_update_stash(int fd, char *stash)
 {
-	char buff[BUFFER_SIZE + 1];
-    char *temp;
+    char *buff;
     int bytes_read;
 
 	if (!stash)
 		stash = malloc((sizeof(char) * 1));
-	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	while (!stash || !ft_strchr(stash, '\n') || !ft_strchr(stash, '\0'))
 	{
 		bytes_read = read(fd, buff, BUFFER_SIZE);
@@ -51,8 +50,7 @@ char *read_and_update_stash(int fd, char *stash)
 		{
 			return (stash);
 		}
-		temp = stash;
-		stash = ft_strjoin(temp, buff);
+		stash = ft_strjoin(stash, buff);
 	}
 	return (stash);
 }
@@ -75,7 +73,7 @@ char	*get_next_line(int fd)
 int main()
 {
 
-	int fd = open("hp.txt", O_RDONLY);
+	int fd = open("try.txt", O_RDONLY);
 	if (fd < 0)
 	{
 		printf("Failed to open file.\n");
