@@ -95,7 +95,7 @@ char	*get_next_line(int fd)
 	}
 	return(NULL);
 }
-
+/*
 int main()
 {
 	int fd = open("hp.txt", O_RDONLY);
@@ -105,7 +105,7 @@ int main()
 		return 1;
 	}
 
-/* 	printf("%s", get_next_line(fd));
+ 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
@@ -136,19 +136,19 @@ int main()
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd)); */
+	printf("%s", get_next_line(fd));
 	char *line;
 	int i = 0;
-	//line = get_next_line(fd)
+	line = get_next_line(fd)
 	while (i < 44)
 	{
 		line = get_next_line(fd);
 		i++;
 		printf("%s", line);
-/* 		if(!ft_strchr(line, '\n'))
-			break; */
+ 		if(!ft_strchr(line, '\n'))
+			break;
 	}
 		printf("\n[%d]\n", i);
 	close(fd);
 	return 0;
-}
+}*/
