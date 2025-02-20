@@ -6,7 +6,7 @@
 /*   By: dancuenc <dancuenc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 13:48:41 by dancuenc          #+#    #+#             */
-/*   Updated: 2025/02/19 11:59:32 by dancuenc         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:21:31 by dancuenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 size_t ft_strlen(const char *s)
 {
 	size_t i = 0;
+
 	while (s[i])
 		i++;
 	return (i);	
