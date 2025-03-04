@@ -6,7 +6,7 @@
 /*   By: dancuenc <dancuenc@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:42:19 by dancuenc          #+#    #+#             */
-/*   Updated: 2025/03/01 16:47:12 by dancuenc         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:36:51 by dancuenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	*read_to_stash(int fd, char *storage)
 		if (bytes_read == -1)
 			return (free(buff), free(storage), NULL);
 		buff[bytes_read] = '\0';
+// Realmente necesito tmp?
 		tmp = storage;
 		storage = ft_strjoin(storage, buff);
 		free(tmp);
@@ -117,7 +118,7 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	int fd = open("one.txt", O_RDONLY);
+	int fd = open("hp.txt", O_RDONLY);
 	if (fd < 0)
 	{
 		printf("Failed to open file.\n");
